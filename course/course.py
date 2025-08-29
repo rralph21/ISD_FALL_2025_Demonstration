@@ -14,13 +14,13 @@ class Course:
     name (str): The name of course
     department (Department): The name of the department in which
     courses exists.
-    credit_hours
+    credit_hours (int): The number of credit hrs sa course has.
 
     raises:
         Value Error: if any args are invalid raise exception.
     """
 
-    def __init__(self, name:str, department:Department, credit_hours:int):
+    def __init__(self, name:str, department:Department, credit_hours: int):
 
         if len(name.strip())> 0: # strip removes 
                              # word trailing(white space)
@@ -40,7 +40,7 @@ class Course:
             raise ValueError("Credit hours must be an int type")
     
     @property
-    def name(self) ->str: #Accessor
+    def name(self) -> str: #Accessor
         return self.__name
 
     @property
@@ -52,8 +52,9 @@ class Course:
         return self.__credit_hours
 
     def __str__(self) -> str:
+
         return (f"Course: {self.__name}"
-                + f"\nDepartment: "+
-                f"{self.__department.name.replace('-', ' ').title()}"
+                + f"\nDepartment: "
+                f"{self.__department.name.replace('_', ' ').title()}"
                 + f"\nCredit Hours: {self.__credit_hours}")
             

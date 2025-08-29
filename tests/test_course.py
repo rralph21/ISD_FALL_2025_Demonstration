@@ -12,18 +12,20 @@ import unittest
 from course.course import Course
 from department.department import Department
 
-class TesstClient(unittest.TestCase):
+class TestClient(unittest.TestCase):
 
     def setUp(self):
         self.course = Course("ISD", Department.COMPUTER_SCIENCE, 6)
 
     def test_init_valid(self):
         # Arrange & Act
-        self.course = Course("ISD", Department.COMPUTER_SCIENCE, 6)
+        course = Course("ISD", Department.COMPUTER_SCIENCE, 6)
 
         # Assert (use name mangling to obtain private attribute)
         self.assertEqual("ISD", course._Course__name)
+
         self.assertEqual(Department.COMPUTER_SCIENCE, course._Course__department)
+
         self.assertEqual(6, course._Course__credit_hours)
 
     def test_init_invalid_name_raises_exception(self):
@@ -59,7 +61,7 @@ class TesstClient(unittest.TestCase):
 
     def test_str(self):
         # Arrange done by setUp
-        expected = ("Course ISD\n"
+        expected = ("Course: ISD\n"
                     + "Department: Computer Science\n"
                     + "Credit Hours: 6"
                     )
